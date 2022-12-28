@@ -29,8 +29,8 @@ const NavigationBar = () => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </label>
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-              <li><img className='w-14 mt-8' src={home} alt="" /> </li>
-              <li><img className='w-14 mt-8' src={watch} alt="" /> </li>
+             <Link to='/home'> <li><img className='w-14 mt-8' src={home} alt="" /> </li></Link>
+            <Link to="media">  <li><img className='w-14 mt-8' src={watch} alt="" /> </li></Link>
               <li><img className='w-14 mt-8' src={market} alt="" /> </li>
               <li><img className='w-14 mt-8' src={group} alt="" /> </li>
               <li><img className='w-14 mt-8' src={gaming} alt="" /> </li>
@@ -63,7 +63,7 @@ const NavigationBar = () => {
         <div className="avatar">
   <div className="w-7 rounded-full ring ring-gray-200 ring-offset-base-100 ring-offset-2">
     {
-        user?.photoURL ?  <img src={user?.photoURL} alt='f'/>: <img src={users} alt='f'/>
+        user?.photoURL ? <Link to='/about'> <img src={user?.photoURL} alt='f'/></Link>: <Link to='/about'><img src={users} alt='f'/></Link>
     }
   
    

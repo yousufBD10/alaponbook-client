@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AboutPage from "../AboutPage/AboutPage";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
@@ -38,6 +39,12 @@ children:[
     path:'/media',
     element: <Media></Media>,
     loader: ()=> fetch("http://localhost:5000/allpost")
+
+},
+{
+    path:'/about',
+    element: <AboutPage></AboutPage>,
+   
 
 },
 {
