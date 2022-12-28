@@ -4,6 +4,7 @@ import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Main from "../Main/Main";
 import Media from "../Media/Media";
+import MediaCardDetails from "../Media/MediaCardDetails";
 
 import Register from "../Register/Register";
 
@@ -37,6 +38,12 @@ children:[
     path:'/media',
     element: <Media></Media>,
     loader: ()=> fetch("http://localhost:5000/allpost")
+
+},
+{
+    path:'/mediadetails/:id',
+    element: <MediaCardDetails></MediaCardDetails>,
+    loader: ({params})=> fetch(`http://localhost:5000/mediadetails/${params.id}`)
 
 },
 
