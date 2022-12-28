@@ -16,7 +16,9 @@ const PostModal = () => {
        
         const message = data.message;
         
-       const  date = new Date();
+       const  d = new Date();
+       const date = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+d.getHours() + ":" + d.getMinutes();
       //  console.log(date);
       const image = data.file[0];
     
