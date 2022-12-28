@@ -51,7 +51,7 @@ const NavigationBar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
               <Link to="/home"><li className='  '><img className='w-14 mr-8 mb-0' src={home} alt="" /></li></Link>
-              <li><img className='w-14 mr-8' src={watch} alt="" /> </li>
+             <Link to='/media'> <li><img className='w-14 mr-8' src={watch} alt="" /> </li></Link>
               <li><img className='w-14 mr-8' src={market} alt="" /> </li>
               <li><img className='w-14 mr-8' src={group} alt="" /> </li>
               <li><img className='w-14 mr-8' src={gaming} alt="" /> </li>

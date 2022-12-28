@@ -1,8 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
 
 const PostModal = () => {
+  const navigate = useNavigate()
      const [loading,setLoading] = useState(false)
     const {user} = useContext(AuthContext);
 
@@ -12,8 +15,9 @@ const PostModal = () => {
           setLoading(true)
        
         const message = data.message;
-          const imageHostKey = process.env.REACT_APP_IMAGE_API;
-    
+        
+       const  date = new Date();
+      //  console.log(date);
       const image = data.file[0];
     
        const formData = new FormData();
@@ -30,7 +34,31 @@ const PostModal = () => {
           if(imgData.success){
                  console.log(image,message);
                setLoading(false)
+                
+               const postData ={
+                photo : image,
+                text : message,
+                like: 0,
+                post_date: date,
+                user_name: user?.displayName,
+                user_photo: user?.photoURL,
+                user_uid: user?.uid,
+               }
 
+               fetch('http://localhost:5000/posts', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json', 
+                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(postData)
+            })
+            .then(res => res.json())
+            .then(result =>{
+                console.log(result);
+                toast.success(`Your posts share done successfully`);
+                navigate('/media')
+            })
             
              
           }

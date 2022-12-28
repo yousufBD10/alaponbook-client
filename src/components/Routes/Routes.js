@@ -3,6 +3,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Main from "../Main/Main";
+import Media from "../Media/Media";
 
 import Register from "../Register/Register";
 
@@ -32,7 +33,12 @@ children:[
     element: <Home></Home>
 
 },
-]
+{
+    path:'/media',
+    element: <Media></Media>,
+    loader: ()=> fetch("http://localhost:5000/allpost")
+
 },
 
+]},
 ])
