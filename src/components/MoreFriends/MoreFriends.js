@@ -6,7 +6,7 @@ const MoreFriends = ({user}) => {
     return (
         <div>
           
-            <div className="card w-48 bg-base-100 shadow-xl">
+            <div className="card w-48 ml-3 mb-5 bg-base-100 shadow-xl">
             <div className="avatar">
   <div className="w-32 m-auto rounded-full">
   {user?.photoURL ?   <img  alt='#' src={user?.photoURL} />:  <img  alt='#' src={usr} />}

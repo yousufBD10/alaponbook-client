@@ -204,7 +204,7 @@ const MediaCard = ({ post }) => {
               <p className="font-bold">{cmt.user_name}</p>
             </div>
 
-            <p className="ml-14 pr-36 mb-3 w-3/4">{cmt.comments}</p>
+            <p className="lg:ml-14 bg-slate-50 rounded-lg p-4 lg:pr-36 mb-3 w-3/4">{cmt.comments}</p>
           </div>
         ))}
       </div>

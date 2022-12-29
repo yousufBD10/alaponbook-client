@@ -63,7 +63,7 @@ const Home = () => {
         </div>
         <div className="divider"></div>
         <h1 className="text-2xl mb-16 ml-3 font-bold">People You May Know</h1>
-     <div className="grid lg:grid-cols-5 px-3 mb-5 md:grid-cols-2 gap-4">
+     <div className="flex flex-wrap gap-4">
       {
         users.map(user=>  <MoreFriends user={user} key={user._id}></MoreFriends>)
       }
