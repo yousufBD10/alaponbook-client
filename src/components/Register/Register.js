@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
 import g from '../assets/image/g.png'
 import { GoogleAuthProvider } from 'firebase/auth';
+import { toast } from 'react-hot-toast';
 
 
 const Register = () => {
@@ -26,21 +27,29 @@ const Register = () => {
             password: ''
         });
        
+        const saveUses = (name,email,photoURL)=>{
         
-        const handleEmailChange = (e) =>{
-            setUserInfo({...userInfo, email: e.target.value})
-        };
-        const handlePassChange = (e) =>{
-            const password = e.target.value;
-            if(password.length < 6){
-                setError({...errors,password:"Password must be 6 characters"})
-                setUserInfo({...userInfo, password: e.target.value})
-            }
-            else{
-                setError({...errors,password:''})
-                setUserInfo({...userInfo, password: e.target.value})
-            }
-        };
+          
+          
+           const updateData = {name,email,photoURL};
+           fetch(`http://localhost:5000/saveusers`, {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(updateData),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.acknowledged) {
+                
+                
+                }
+                console.log(data);
+              })
+              .catch((err) => console.error(err));
+       
+        }
     
 
         
@@ -69,7 +78,7 @@ const Register = () => {
           });
       };
   
-      
+    
     
        
         const handleRegister = (data) =>{
@@ -112,10 +121,12 @@ const Register = () => {
       
             updateUserProfile(profile)
                 .then(() => {
+                  saveUses(user?.displayName,user?.email,user?.photoURL)
                     setLoading(false)
                     if(loading === false){
 
-                        // navigate(from , {replace: true})
+                        navigate(from , {replace: true})
+                        toast.success('Account created successful')
                     }
                  })
                 .catch(error => console.error(error));
@@ -132,33 +143,13 @@ const Register = () => {
           }
       });
 
-      const handleGoogleSignin = () => {
-        sinInGoogle(googleProvider)
-          .then((result) => {
-            const user = result.user;
-            console.log(user);
-           
-            // saveUsers(user.displayName,user.email,role,user.uid)
-            
-            const currentUser = {
-              email: user.email
-          }
-    
-          console.log(currentUser);
-          
-    
-            navigate(from, { replace: true });
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
-
+      
+    }
       
   
-         
+      
     
-        }
+        
 
     return (
         <div className="w-full mt-8 h-auto overflow-scroll block h-screenp-4 flex items-center justify-center">

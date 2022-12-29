@@ -1,15 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import users from "../assets/image/user.png.crdownload";
 import { FaImage, FaViadeo, FaVideo } from "react-icons/fa";
 import PostModal from "../PostModal/PostModal";
 import Footer from "../share/Footer/Footer";
+import MoreFriends from "../MoreFriends/MoreFriends";
+import axios from "axios";
 
 const Home = () => {
+
+     const [users,setUsers] = useState([]);
+
+     useEffect(()=>{
+      axios.get('http://localhost:5000/users')
+      .then(res=>{
+        setUsers(res.data)
+
+      })
+      .catch(error =>{
+        console.log("users can't find",error);
+      })
+     },[])
+   console.log(users);
   const { user } = useContext(AuthContext);
   return (
     <div>
-      <div className="card m-auto lg:w-3/4  bg-base-100 shadow-xl">
+      <div className="card min-h-screen m-auto lg:w-3/4  bg-base-100 shadow-xl">
         <div className="card-body">
           <div className="flex items-center">
             <div>
@@ -45,8 +61,16 @@ const Home = () => {
             </div>
             <PostModal></PostModal>
         </div>
+        <div className="divider"></div>
+        <h1 className="text-2xl mb-16 ml-3 font-bold">People You May Know</h1>
+     <div className="grid lg:grid-cols-5 px-3 mb-5 md:grid-cols-2 gap-4">
+      {
+        users.map(user=>  <MoreFriends user={user} key={user._id}></MoreFriends>)
+      }
+    
+     </div>
       </div>
-      <Footer/>
+      <Footer></Footer>
     </div>
   );
 };
