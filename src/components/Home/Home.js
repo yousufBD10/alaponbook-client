@@ -12,7 +12,7 @@ const Home = () => {
      const [users,setUsers] = useState([]);
 
      useEffect(()=>{
-      axios.get('http://localhost:5000/users')
+      axios.get('https://alaponbook-server.vercel.app/users')
       .then(res=>{
         setUsers(res.data)
 

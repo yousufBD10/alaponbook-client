@@ -16,7 +16,7 @@ const AboutPage = () => {
   const [update ,setUpdate] = useState({});
   
   useEffect(()=>{
-    axios.get(`http://localhost:5000/updateprofile?email=${user?.email}`)
+    axios.get(`https://alaponbook-server.vercel.app/updateprofile?email=${user?.email}`)
     .then(res => {
      
    setUpdate(res.data)
@@ -31,7 +31,7 @@ const AboutPage = () => {
       
 //     queryKey:[user?.email],
 //     queryFn:async()=>{
-//         const res = await fetch(`http://localhost:5000/updateprofile?email=${user?.email}`);
+//         const res = await fetch(`https://alaponbook-server.vercel.app/updateprofile?email=${user?.email}`);
 //         const data = await res.json();
 //         return data;
 //       }

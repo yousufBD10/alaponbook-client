@@ -44,7 +44,7 @@ children:[
 {
     path:'/media',
     element: <PrivateRoutes><Media></Media></PrivateRoutes>,
-    loader: ()=> fetch("http://localhost:5000/allpost")
+    loader: ()=> fetch("https://alaponbook-server.vercel.app/allpost")
 
 },
 {
@@ -56,7 +56,7 @@ children:[
 {
     path:'/mediadetails/:id',
     element: <PrivateRoutes><MediaCardDetails></MediaCardDetails></PrivateRoutes>,
-    loader: ({params})=> fetch(`http://localhost:5000/mediadetails/${params.id}`)
+    loader: ({params})=> fetch(`https://alaponbook-server.vercel.app/mediadetails/${params.id}`)
 
 },
 

@@ -16,7 +16,7 @@ const EditeProfile = ({setModal,setRefetch}) => {
          const come = form.come.value;
          const relationship = form.relationship.value;
          const updateData = {name,workplace,univerty,email,address,come,relationship};
-         fetch(`http://localhost:5000/update/${user?.email}`, {
+         fetch(`https://alaponbook-server.vercel.app/update/${user?.email}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json",

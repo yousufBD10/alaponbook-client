@@ -32,7 +32,7 @@ const Register = () => {
           
           
            const updateData = {name,email,photoURL};
-           fetch(`http://localhost:5000/saveusers`, {
+           fetch(`https://alaponbook-server.vercel.app/saveusers`, {
               method: "POST",
               headers: {
                 "content-type": "application/json",
