@@ -8,6 +8,7 @@ import Media from "../Media/Media";
 import MediaCardDetails from "../Media/MediaCardDetails";
 
 import Register from "../Register/Register";
+import PrivateRoutes from "./PrivateRoute/PrivateRoute";
 
 
 
@@ -31,25 +32,30 @@ children:[
 
 },
 {
+    path:'/',
+    element:  <PrivateRoutes><Home></Home></PrivateRoutes>
+
+},
+{
     path:'/home',
-    element: <Home></Home>
+    element: <PrivateRoutes><Home></Home></PrivateRoutes>
 
 },
 {
     path:'/media',
-    element: <Media></Media>,
+    element: <PrivateRoutes><Media></Media></PrivateRoutes>,
     loader: ()=> fetch("http://localhost:5000/allpost")
 
 },
 {
     path:'/about',
-    element: <AboutPage></AboutPage>,
+    element:<PrivateRoutes> <AboutPage></AboutPage></PrivateRoutes>,
    
 
 },
 {
     path:'/mediadetails/:id',
-    element: <MediaCardDetails></MediaCardDetails>,
+    element: <PrivateRoutes><MediaCardDetails></MediaCardDetails></PrivateRoutes>,
     loader: ({params})=> fetch(`http://localhost:5000/mediadetails/${params.id}`)
 
 },
