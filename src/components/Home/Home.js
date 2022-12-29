@@ -3,6 +3,7 @@ import { AuthContext } from "../Context/AuthProvider";
 import users from "../assets/image/user.png.crdownload";
 import { FaImage, FaViadeo, FaVideo } from "react-icons/fa";
 import PostModal from "../PostModal/PostModal";
+import Footer from "../share/Footer/Footer";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -45,6 +46,7 @@ const Home = () => {
             <PostModal></PostModal>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
