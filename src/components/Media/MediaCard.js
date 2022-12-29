@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import users from "../assets/image/user.png.crdownload";
 import { RiEarthFill } from "react-icons/ri";
 import { SlLike } from "react-icons/sl";
@@ -10,8 +10,11 @@ import { Link } from "react-router-dom";
 const MediaCard = ({ post }) => {
   const { user } = useContext(AuthContext);
   const { _id, photo, text, like, post_date, user_name, user_photo, user_uid } =
-    post;
-   
+  post;
+  const [counter, setCounter] = useState(like);
+    const likeData = {
+      counter,_id
+    }
         const newText = text.slice(0,300)
     
   const newDate = post_date?.slice(0, 10);
@@ -29,6 +32,10 @@ const MediaCard = ({ post }) => {
     },
   });
   console.log(comments);
+
+  const handleLike = ()=>{
+    setCounter(like => like + 1);
+  }
 
   const handleComment = (e) => {
     e.preventDefault();
@@ -70,6 +77,25 @@ const MediaCard = ({ post }) => {
       .catch((err) => console.error(err));
   };
 
+ 
+
+  fetch(`http://localhost:5000/like`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(likeData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.acknowledged) {
+         refetch();
+        //  setCounter(like)
+      }
+      console.log(data);
+    })
+    .catch((err) => console.error(err));
+
   return (
     <div className="lg:w-3/4 m-auto mt-6">
       <div className="card lg:w-3/4 m-auto bg-base-100 shadow-xl">
@@ -106,7 +132,7 @@ const MediaCard = ({ post }) => {
             <p className="flex items-center gap-2">
               {" "}
               <SlLike></SlLike>
-              {like}
+              {counter}
             </p>
           </div>
           <div>
@@ -119,7 +145,7 @@ const MediaCard = ({ post }) => {
 
         <div className="flex justify-evenly mb-3">
           <div>
-            <button className="flex items-center gap-2">
+            <button onClick={handleLike} className="flex items-center gap-2">
               {" "}
               <SlLike></SlLike>Like
             </button>
